@@ -18,4 +18,4 @@ Route::get('/', [App\Http\Controllers\View::class, 'index']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/regist', [App\Http\Controllers\regist::class, 'index'])->name('regist');
+
