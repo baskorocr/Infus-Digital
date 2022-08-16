@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\View::class, 'index']);
+Route::get('/', [App\Http\Controllers\View::class, 'index'])->name('index');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::get('/device', [App\Http\Controllers\addDeviceController::class, 'index'])->middleware('auth')->name('device');
+Route::post('update', [App\Http\Controllers\UpdateController::class, 'update']);
+Route::post('devices',[App\Http\Controllers\addDeviceController::class, 'post']);

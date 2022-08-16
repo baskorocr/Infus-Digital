@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\sensor;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $sensor = DB::table('sensor')->get();
+        $sensor = sensor::all();
         return view('home',['sensor' =>$sensor]);
 
         

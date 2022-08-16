@@ -8070,7 +8070,10 @@ button.bg-dark:focus {
 .mb-auto,
 .my-auto {
   margin-bottom: auto !important;
+  
 }
+
+
 
 .ml-auto,
 .mx-auto {

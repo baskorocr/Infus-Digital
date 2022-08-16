@@ -119,6 +119,16 @@ textarea::-moz-placeholder { color: #adadad;}
 textarea:-ms-input-placeholder { color: #adadad;}
 
 /*---------------------------------------------*/
+
+
+.footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
 button {
 	outline: none !important;
 	border: none;
