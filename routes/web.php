@@ -16,8 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\View::class, 'index'])->name('index');
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/device', [App\Http\Controllers\addDeviceController::class, 'index'])->middleware('auth')->name('device');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('/adddevice', [App\Http\Controllers\addDeviceController::class, 'index'])->middleware('auth')->name('adddevice');
+Route::get('updates', [App\Http\Controllers\UpdateController::class, 'index'])->name('updates');
 Route::post('update', [App\Http\Controllers\UpdateController::class, 'update']);
-Route::post('devices',[App\Http\Controllers\addDeviceController::class, 'post']);
+Route::post('adddevices', [App\Http\Controllers\addDeviceController::class, 'post']);
+Route::get('/device', [App\Http\Controllers\addDeviceController::class, 'list'])->middleware('auth')->name('device');
+Route::get('deletedevice/{id}',[App\Http\Controllers\UpdateController::class, 'delete']);
+
+

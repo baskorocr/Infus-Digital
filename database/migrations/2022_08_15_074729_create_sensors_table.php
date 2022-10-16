@@ -15,12 +15,9 @@ class CreateSensorsTable extends Migration
     {
         Schema::create('sensors', function (Blueprint $table) {
             
-            $table->string("id")->unique();
-            $table->integer("tpm")->nullable();
-            $table->decimal("kapasitas")->nullable();
-            $table->decimal("prediksi")->nullable();
-            $table->string("nama")->nullable();
-            $table->string("ruang")->nullable();
+            $table->string('id')->unique()->primary();
+            $table->string("status")->nullable();
+
             $table->timestamps();
         });
     }

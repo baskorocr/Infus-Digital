@@ -25,8 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $sensor = sensor::all();
-        return view('home',['sensor' =>$sensor]);
+        
+        return view('home');
 
         
     }

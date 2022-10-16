@@ -23,16 +23,13 @@ class addDeviceController extends Controller
         $cek = sensor::where('id',$request->kode)->first();
         if($cek != NULL)
         {
-            session()->flash('message','Kode alat sudah ada');
-            return redirect()->route('device');
+            session()->flash('error','Kode alat sudah ada');
+            return redirect()->route('adddevice');
         }
         else{
             $post = sensor::create([
                 'id' => $request->kode,
-                'tpm' => 0,
-                'kapasitas' => 0,
-                'prediksi' => 0
-    
+                'status'=> 'tidak terpasang'
             ]);
 
             session()->flash('message','alat ditambahkan');
@@ -45,5 +42,10 @@ class addDeviceController extends Controller
     public function index(){
 
         return view('addDevice');
+    }
+
+    public function list(){
+        $sensor = sensor::all();
+        return view('listAlat',['key' =>$sensor]);
     }
 }

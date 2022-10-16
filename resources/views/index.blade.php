@@ -1,112 +1,154 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-	<title>Login V4</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>@yield('title')</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--===============================================================================================-->
 </head>
-<body>
-   
+<body class="z">
 
-	<div class="limiter">
-		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form" method="POST" action="{{ url('update') }}">
-				@csrf	
-                     <span class="login100-form-title p-b-49">
-						Update Alat
-                        
-					</span>
-					<div class="container">
-					
-								@if(session()->has('message'))
-								<div class="alert alert-success">
-									{{ session('message')}}
-								</div>
-								@endif
-							 
-                                 
-						<div class="wrap-input100 validate-input m-b-23" data-validate = "nama">
-						<span class="label-input100">nama pasien</span>
-						<input id="nama" class="input100 form-control" type="text" name="nama" placeholder="masukan nama pasien" required autocomplete="nama" autofocus>
-						<span class="focus-input100" data-symbol="&#xf206;"></span>   
-                               
-					</div>
-					<div class="wrap-input100 validate-input m-b-23" data-validate = "kode">
-						<span class="label-input100">Kode alat</span>
-						<select class="form-control" required autocomplete="kode" name="kode">
-							<option>--Pilih --</option>
-							@foreach ($key as $keys)
-                        	<option value="{{$keys->id}}">{{$keys->id}}</option>
-                    		@endforeach
-						</select>
-						<span class="focus-input100" data-symbol=""></span>       
-					</div>
-					
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button type="submit"  class="login100-form-btn">
-                             Update
-							</button>
-						</div>
-					</div>
-					<div class="text-right p-t-8 p-b-31 d-flex justify-content-center">
-                    @if (Route::has('login'))
-                                    <a class="btn btn-link" href="{{ route('login') }}">
-                                        masuk disini
-                                    </a>
-                                @endif
-					</div>
-
-					
-				</form>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container">
+			<a class="navbar-brand" href="#">Navbar</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="{{route('updates')}}">Update data</a>
+				</li>
+				
+			</ul>
+			<a class="btn btn-primary" href="{{route('login')}}" role="button">login</a>
 			</div>
 		</div>
-	</div>
-	
+		</nav>
+    
+			<div class="container mainDevice">
 
-	
-	
-<!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
+					<!-- Page Heading -->
+					<div class="d-sm-flex align-items-center justify-content-between mb-4 p">
+						<h1 class="h3 mb-0 ">Daftar Perangkat Terhubung</h1>
+						<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+								class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+					</div>
+					
+					
+					<!-- Content Row -->
+					@for($i = 0; $i < count($key[0]); $i++)
+						@if($key[0][$i]['id'] ==$val[$i]['alat'] && $key[0][$i]['status'] == 'terpasang' )
+						<div>
+							<div>
+								<h6>nama  :{{$key[0][$i]['pasien']['nama']}} </h6>
+								<h6>ruang : {{$key[0][$i]['pasien']['ruang']}} </h6>
+							</div>
+							<div class="row mt-2">
+							
+								<!-- Earnings (Monthly) Card Example -->
+								<div class="col-xl-3 col-md-6 mb-4">
+									<div class="card border-left-success shadow h-100 py-2">
+										<div class="card-body">
+											<div class="row no-gutters align-items-center">
+												<div class="col mr-2">
+													<div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+														TPM</div>
+													<div class="h5 mb-0 font-weight-bold text-gray-800">{{$val[$i]['tpm']}}</div>
+												</div>
+												<div class="col-auto">
+													<i class="fas fa-thumbtack fa-2x text-gray-300"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 
+								<!-- Earnings (Monthly) Card Example -->
+								<div class="col-xl-3 col-md-6 mb-4">
+									<div class="card border-left-info shadow h-100 py-2">
+										<div class="card-body">
+											<div class="row no-gutters align-items-center">
+												<div class="col mr-2">
+													<div class="text-xs font-weight-bold text-info text-uppercase mb-1">Kapasitas
+													</div>
+													<div class="row no-gutters align-items-center">
+														<div class="col-auto">
+															<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$val[$i]['kapasitas']}} ML</div>
+														</div>
+														
+													</div>
+												</div>
+												<div class="col-auto">
+													<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Pending Requests Card Example -->
+								<div class="col-xl-3 col-md-6 mb-4">
+									<div class="card border-left-warning shadow h-100 py-2">
+										<div class="card-body">
+											<div class="row no-gutters align-items-center">
+												<div class="col mr-2">
+													<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+														Prediksi</div>
+													<div class="h5 mb-0 font-weight-bold text-gray-800">{{$val[$i]['prediksi']}} Jam</div>
+												</div>
+												<div class="col-auto">
+													<i class="fas fa-clock fa-2x text-gray-300"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						@else
+							@continue
+						@endif
+					@endfor
+					
+					
+
+
+			</div>
+
+			<!-- Bootstrap core JavaScript-->
+			<script src="vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+            <!-- Core plugin JavaScript-->
+            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+            <!-- Custom scripts for all pages-->
+            <script src="js/sb-admin-2.min.js"></script>
+
+            <!-- Page level plugins -->
+            <script src="vendor/chart.js/Chart.min.js"></script>
+
+            <!-- Page level custom scripts -->
+            <script src="js/demo/chart-area-demo.js"></script>
+            <script src="js/demo/chart-pie-demo.js"></script>
 </body>
 </html>
-

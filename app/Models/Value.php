@@ -5,18 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class sensor extends Model
+class Value extends Model
 {
     use HasFactory;
     protected $fillable = [
         'id',
-        'status'
+        'alat',
+        'tpm',
+        'kapasitas',
+        'prediksi',
         ];
 
-       
-        public function Pasien(){
-            return $this->belongsTo(Pasien::class,'id','alat');
+        public function sensor(){
+            return $this->hasOne(sensor::class,'id','alat');
         }   
-        
-        
+         
+       
 }

@@ -6,7 +6,7 @@
 
 		<div class="d-flex justify-content-center">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-90">
-				<form class="login100-form validate-form" method="POST" action="{{ url('devices') }}">
+				<form class="login100-form validate-form" method="POST" action="{{ url('adddevices') }}">
 				@csrf	
                      <span class="login100-form-title p-b-49">
 						Tambah Alat
@@ -17,6 +17,10 @@
 								@if(session()->has('message'))
 								<div class="alert alert-success">
 									{{ session('message')}}
+								</div>
+								@elseif(session()->has('error'))
+								<div class="alert alert-danger">
+									{{ session('error')}}
 								</div>
 								@endif
 							 

@@ -47,7 +47,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('home')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -71,7 +71,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Setting</h6>
 
-                <a class="collapse-item" href="{{route('device')}}">tambah alat</a>
+                <a class="collapse-item" href="{{route('device')}}">daftar alat</a>
+                <a class="collapse-item" href="{{route('adddevice')}}">tambah alat</a>
             </div>
         </div>
     </li>
