@@ -15,7 +15,7 @@ class view extends Controller
     {
        $Tempdata = Value::with('Pasien.sensor')->get();
        $data = $Tempdata->toArray();
-  
+
        if(count($Tempdata) == !0 ){
         return view('index',['data'=>$data]);
        }

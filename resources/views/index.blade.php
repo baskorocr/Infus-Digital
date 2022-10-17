@@ -57,6 +57,7 @@
 					<!-- Content Row -->
 					@for($i = 0; $i < count($data); $i++)
 						@if($data[$i]['pasien'][0]['sensor'][0]['status']=='terpasang')
+						@if($data[$i]['status'] == 1)
 						<div>
 							<div>
 								<h6>nama  :{{$data[$i]['pasien'][0]['nama']}} </h6>
@@ -124,6 +125,7 @@
 								</div>
 							</div>
 						</div>
+						@endif
 						@else
 							blm ada
 						@endif

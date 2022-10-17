@@ -10,10 +10,12 @@ class Value extends Model
     use HasFactory;
     protected $fillable = [
         'id',
+        'idPasien',
         'alat',
         'tpm',
         'kapasitas',
         'prediksi',
+        'status'
         ];
 
         public function Pasien(){
