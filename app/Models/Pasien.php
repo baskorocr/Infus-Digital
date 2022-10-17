@@ -16,7 +16,11 @@ class Pasien extends Model
         ];
 
         public function sensor(){
-            return $this->hasOne(sensor::class,'alat','id');
+            return $this->hasMany(sensor::class,'id','alat');
+        }   
+
+        public function Value(){
+            return $this->belongsTo(Value::class,'id','alat');
         }   
         
         

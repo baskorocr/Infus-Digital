@@ -55,12 +55,12 @@
 					
 					
 					<!-- Content Row -->
-					@for($i = 0; $i < count($key[0]); $i++)
-						@if($key[0][$i]['id'] ==$val[$i]['alat'] && $key[0][$i]['status'] == 'terpasang' )
+					@for($i = 0; $i < count($data); $i++)
+						@if($data[$i]['pasien'][0]['sensor'][0]['status']=='terpasang')
 						<div>
 							<div>
-								<h6>nama  :{{$key[0][$i]['pasien']['nama']}} </h6>
-								<h6>ruang : {{$key[0][$i]['pasien']['ruang']}} </h6>
+								<h6>nama  :{{$data[$i]['pasien'][0]['nama']}} </h6>
+								<h6>ruang : {{$data[$i]['pasien'][0]['ruang']}} </h6>
 							</div>
 							<div class="row mt-2">
 							
@@ -72,7 +72,7 @@
 												<div class="col mr-2">
 													<div class="text-xs font-weight-bold text-success text-uppercase mb-1">
 														TPM</div>
-													<div class="h5 mb-0 font-weight-bold text-gray-800">{{$val[$i]['tpm']}}</div>
+													<div class="h5 mb-0 font-weight-bold text-gray-800">{{$data[$i]['tpm']}}</div>
 												</div>
 												<div class="col-auto">
 													<i class="fas fa-thumbtack fa-2x text-gray-300"></i>
@@ -92,7 +92,7 @@
 													</div>
 													<div class="row no-gutters align-items-center">
 														<div class="col-auto">
-															<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$val[$i]['kapasitas']}} ML</div>
+															<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$data[$i]['kapasitas']}} ML</div>
 														</div>
 														
 													</div>
@@ -113,7 +113,7 @@
 												<div class="col mr-2">
 													<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
 														Prediksi</div>
-													<div class="h5 mb-0 font-weight-bold text-gray-800">{{$val[$i]['prediksi']}} Jam</div>
+													<div class="h5 mb-0 font-weight-bold text-gray-800">{{$data[$i]['prediksi']}} Jam</div>
 												</div>
 												<div class="col-auto">
 													<i class="fas fa-clock fa-2x text-gray-300"></i>
@@ -125,7 +125,7 @@
 							</div>
 						</div>
 						@else
-							@continue
+							blm ada
 						@endif
 					@endfor
 					

@@ -15,11 +15,11 @@ class CreateValuesTable extends Migration
     {
         Schema::create('values', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('alat');
+            $table->integer('idPasien')->unsigned();
             $table->integer("tpm")->nullable();
             $table->decimal("kapasitas")->nullable();
             $table->decimal("prediksi")->nullable();
-            $table->foreign("alat")->references('id')->on('sensors')->onDelete('cascade');
+            $table->foreign("idPasien")->references('id')->on('pasiens')->onDelete('cascade');
             $table->timestamps();
         });
     }

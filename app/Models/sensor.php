@@ -15,8 +15,10 @@ class sensor extends Model
 
        
         public function Pasien(){
-            return $this->belongsTo(Pasien::class,'id','alat');
+            return $this->belongsTo(Pasien::class);
         }   
+
+       
         
         
 }

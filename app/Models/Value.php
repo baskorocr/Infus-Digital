@@ -16,8 +16,8 @@ class Value extends Model
         'prediksi',
         ];
 
-        public function sensor(){
-            return $this->hasOne(sensor::class,'id','alat');
+        public function Pasien(){
+            return $this->hasMany(Pasien::class,'id','idPasien');
         }   
          
        

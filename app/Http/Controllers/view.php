@@ -13,37 +13,15 @@ class view extends Controller
    
     public function index()
     {
-       $dataSensor = sensor::with('Pasien')->get();
-   
-       $itemVal = [];
-       $itemSensor =[];
-       foreach($dataSensor as $sensor){
-        $value = Value::where('alat',$sensor->id)->OrderBy('id','desc')->first();
-        
-        if($sensor->status == "tidak terpasang"){
-            
-            continue;
-        }
-        else{
-
-            if($value== !null)
-            {
-                $itemVal [] =  $value->toArray();
-                $itemSensor [] = (array) $dataSensor->toArray();
-            }
-            else{
-                continue;
-            } 
-
-        }
-
-      
-        
-    }
-    
-       ;
-
-       return view('index',['key'=>$itemSensor,'val'=>$itemVal]);
+       $Tempdata = Value::with('Pasien.sensor')->get();
+       $data = $Tempdata->toArray();
+  
+       if(count($Tempdata) == !0 ){
+        return view('index',['data'=>$data]);
+       }
+       else{
+        dd("dsadsa");
+       }
       
     }
 
