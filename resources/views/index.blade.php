@@ -56,78 +56,82 @@
 					
 					<!-- Content Row -->
 					@for($i = 0; $i < count($data); $i++)
-						@if($data[$i]['pasien'][0]['sensor'][0]['status']=='terpasang')
 						@if($data[$i]['status'] == 1)
 						<div>
 							<div>
-								<h6>nama  :{{$data[$i]['pasien'][0]['nama']}} </h6>
-								<h6>ruang : {{$data[$i]['pasien'][0]['ruang']}} </h6>
+								<h6>nama  : {{$data[$i]['nama']}} </h6>
+								<h6>ruang : {{$data[$i]['ruang']}} </h6>
 							</div>
+							@for($p = count($value)-1; $p>=0; $p--)
+							@if($value[$p]['idPasien'] == $data[$i]['id'])
 							<div class="row mt-2">
 							
-								<!-- Earnings (Monthly) Card Example -->
-								<div class="col-xl-3 col-md-6 mb-4">
-									<div class="card border-left-success shadow h-100 py-2">
-										<div class="card-body">
-											<div class="row no-gutters align-items-center">
-												<div class="col mr-2">
-													<div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-														TPM</div>
-													<div class="h5 mb-0 font-weight-bold text-gray-800">{{$data[$i]['tpm']}}</div>
-												</div>
-												<div class="col-auto">
-													<i class="fas fa-thumbtack fa-2x text-gray-300"></i>
-												</div>
+							<!-- Earnings (Monthly) Card Example -->
+							<div class="col-xl-3 col-md-6 mb-4">
+								<div class="card border-left-success shadow h-100 py-2">
+									<div class="card-body">
+										<div class="row no-gutters align-items-center">
+											<div class="col mr-2">
+												<div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+													TPM</div>
+												<div class="h5 mb-0 font-weight-bold text-gray-800">{{$value[$p]['tpm']}}</div>
+											</div>
+											<div class="col-auto">
+												<i class="fas fa-thumbtack fa-2x text-gray-300"></i>
 											</div>
 										</div>
 									</div>
 								</div>
+							</div>
 
-								<!-- Earnings (Monthly) Card Example -->
-								<div class="col-xl-3 col-md-6 mb-4">
-									<div class="card border-left-info shadow h-100 py-2">
-										<div class="card-body">
-											<div class="row no-gutters align-items-center">
-												<div class="col mr-2">
-													<div class="text-xs font-weight-bold text-info text-uppercase mb-1">Kapasitas
-													</div>
-													<div class="row no-gutters align-items-center">
-														<div class="col-auto">
-															<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$data[$i]['kapasitas']}} ML</div>
-														</div>
-														
-													</div>
+							<!-- Earnings (Monthly) Card Example -->
+							<div class="col-xl-3 col-md-6 mb-4">
+								<div class="card border-left-info shadow h-100 py-2">
+									<div class="card-body">
+										<div class="row no-gutters align-items-center">
+											<div class="col mr-2">
+												<div class="text-xs font-weight-bold text-info text-uppercase mb-1">Kapasitas
 												</div>
-												<div class="col-auto">
-													<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+												<div class="row no-gutters align-items-center">
+													<div class="col-auto">
+														<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$value[$p]['kapasitas']}} ML</div>
+													</div>
+													
 												</div>
+											</div>
+											<div class="col-auto">
+												<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
 											</div>
 										</div>
 									</div>
 								</div>
+							</div>
 
-								<!-- Pending Requests Card Example -->
-								<div class="col-xl-3 col-md-6 mb-4">
-									<div class="card border-left-warning shadow h-100 py-2">
-										<div class="card-body">
-											<div class="row no-gutters align-items-center">
-												<div class="col mr-2">
-													<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-														Prediksi</div>
-													<div class="h5 mb-0 font-weight-bold text-gray-800">{{$data[$i]['prediksi']}} Jam</div>
-												</div>
-												<div class="col-auto">
-													<i class="fas fa-clock fa-2x text-gray-300"></i>
-												</div>
+							<!-- Pending Requests Card Example -->
+							<div class="col-xl-3 col-md-6 mb-4">
+								<div class="card border-left-warning shadow h-100 py-2">
+									<div class="card-body">
+										<div class="row no-gutters align-items-center">
+											<div class="col mr-2">
+												<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+													Prediksi</div>
+												<div class="h5 mb-0 font-weight-bold text-gray-800">{{$value[$p]['prediksi']}} Jam</div>
+											</div>
+											<div class="col-auto">
+												<i class="fas fa-clock fa-2x text-gray-300"></i>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						@endif
+								@break
+							@endif
+							@endfor
+							
+						</div>
 						@else
-							blm ada
+							
 						@endif
 					@endfor
 					

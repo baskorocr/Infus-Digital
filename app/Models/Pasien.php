@@ -13,6 +13,7 @@ class Pasien extends Model
         'alat',
         'nama',
         'ruang',
+        'status'
         ];
 
         public function sensor(){

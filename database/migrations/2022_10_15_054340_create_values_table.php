@@ -19,7 +19,6 @@ class CreateValuesTable extends Migration
             $table->integer("tpm")->nullable();
             $table->decimal("kapasitas")->nullable();
             $table->decimal("prediksi")->nullable();
-            $table->integer('status')->nullable();
             $table->foreign("idPasien")->references('id')->on('pasiens')->onDelete('cascade');
             $table->timestamps();
         });

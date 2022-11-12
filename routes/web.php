@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\View::class, 'index'])->name('index');
 
 Auth::routes();
+Route::get('/sensor/{temp}', [App\Http\Controllers\View::class, 'sensor']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 Route::get('/adddevice', [App\Http\Controllers\addDeviceController::class, 'index'])->middleware('auth')->name('adddevice');
 Route::get('updates', [App\Http\Controllers\UpdateController::class, 'index'])->name('updates');

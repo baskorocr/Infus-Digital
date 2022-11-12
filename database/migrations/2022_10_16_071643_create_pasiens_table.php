@@ -18,6 +18,7 @@ class CreatePasiensTable extends Migration
             $table->string('alat');
             $table->string('nama')->nullable();
             $table->string('ruang')->nullable();
+            $table->integer('status');
             $table->foreign("alat")->references('id')->on('sensors')->onDelete('cascade');
             $table->timestamps();
         });

@@ -15,11 +15,11 @@ class Value extends Model
         'tpm',
         'kapasitas',
         'prediksi',
-        'status'
+    
         ];
 
         public function Pasien(){
-            return $this->hasMany(Pasien::class,'id','idPasien');
+            return $this->belongsTo(Pasien::class,'id','idPasien');
         }   
          
        

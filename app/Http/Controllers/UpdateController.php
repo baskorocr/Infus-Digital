@@ -16,11 +16,16 @@ class UpdateController extends Controller
             
             
             $z = sensor::where('id', $request->kode)->first();
+            $PasienUpdate = Pasien::where('alat',$request->kode)->latest('created_at')->first();
+            $PasienUpdate->update([
+                'status'=> 0
+            ]);
             Pasien::Create([
                 
                 'alat'=> $z->id,
                 'nama'=>$request->nama,
-                'ruang'=>$request->ruang
+                'ruang'=>$request->ruang,
+                'status'=>1
             ]);
 
             session()->flash('message','Data alat sudah diupdate');
