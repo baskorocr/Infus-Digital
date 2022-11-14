@@ -13,12 +13,15 @@ class view extends Controller
 {
   
     public function sensor($temp){
+        $kapasitas = 500;
+        $prediksi = $kapasitas/$temp;
+        $prediksi = $prediksi/60;
         Value::Create([
                 
             'idPasien'=> "2",
             'tpm'=> $temp,
-            'kapasitas'=> "0",
-            'prediksi'=> "0",
+            'kapasitas'=> $kapasitas,
+            'prediksi'=> $prediksi,
             
         ]);
 
