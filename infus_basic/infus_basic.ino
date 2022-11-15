@@ -1,6 +1,7 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFi.h>
 #include <Ticker.h>
+#include <HX711_ADC.h>
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -20,6 +21,11 @@ unsigned long jumlahTetes = 0;
 float oldtPerDrops;
 float dropsPerMinutes;
 float dropsPerSecond = 0;
+
+const int LOADCELL_DOUT_PIN = D6;
+const int LOADCELL_SCK_PIN = D7;
+
+HX711_ADC LoadCell(LOADCELL_DOUT_PIN,LOADCELL_SCK_PIN);
 
 void ICACHE_RAM_ATTR voidCounter ();
 
@@ -55,7 +61,9 @@ void setup()
 {
   Serial.begin(115200);
   Serial.println();
-
+  LoadCell.begin();
+  LoadCell.start(2000);
+  LoadCell.setCalFactor(114.308);
   Serial.printf("Connecting to %s ", ssid);
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED)
@@ -75,6 +83,7 @@ void setup()
 void loop()
 {
   timer();
+  berat();
   Kirim();
   
 }
@@ -122,8 +131,7 @@ void Kirim(){
           {
             if (client.available())
             {
-              String line = client.readStringUntil('\n');
-              Serial.println(line);
+              Serial.println("200 OK");
             }
           }
           client.stop();
@@ -136,4 +144,15 @@ void Kirim(){
         }
     }
   }
+}
+
+
+void berat(){
+  LoadCell.update();
+  float i = LoadCell.getData();
+  if(i<0){
+    i=0;
+  }
+  Serial.print("Berat[g]: ");
+  Serial.println(i);
 }

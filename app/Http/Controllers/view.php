@@ -13,6 +13,9 @@ class view extends Controller
 {
   
     public function sensor($temp){
+        // $pasien = Pasien::where('alat', $alat)->where('status','1')->get();
+        $kapasitas ; //kapasitas dari alat
+        $prediksi = $kapasitas/$temp;
         Value::Create([
                 
             'idPasien'=> "2",
