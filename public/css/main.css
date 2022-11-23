@@ -132,13 +132,13 @@ textarea:-ms-input-placeholder { color: #adadad;}
   margin-top: 50px;
 }
 .z{
-  background-image:url('../images/bg-01.jpg') ;
-  height: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
+  background:url('../images/bg-01.jpg')  no-repeat center center fixed ;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
+
+  
 }
 .mainDevice{
   color: white;

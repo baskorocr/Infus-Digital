@@ -12,23 +12,20 @@ use App\Models\sensor;
 class view extends Controller
 {
   
-    public function sensor($temp){
-        // $pasien = Pasien::where('alat', $alat)->where('status','1')->get();
-        $kapasitas ; //kapasitas dari alat
-        $prediksi = $kapasitas/$temp;
+    public function sensor($idAlat, $dropsPerMinutes ,$temp){
+        $pasien = Pasien::where('alat', $idAlat)->where('status','1')->get();
+        $prediksi = ($kapasitas/$temp)/10;
         Value::Create([
                 
-            'idPasien'=> "2",
+            'idPasien'=> $pasien->id,
             'tpm'=> $temp,
-            'kapasitas'=> "0",
-            'prediksi'=> "0",
+            'kapasitas'=> $kapasitas,
+            'prediksi'=> $prediksi,
             
         ]);
 
     }
 
-    
-   
     public function index()
     {
        
