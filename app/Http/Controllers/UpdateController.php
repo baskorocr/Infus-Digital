@@ -17,16 +17,29 @@ class UpdateController extends Controller
             
             $z = sensor::where('id', $request->kode)->first();
             $PasienUpdate = Pasien::where('alat',$request->kode)->latest('created_at')->first();
-            $PasienUpdate->update([
-                'status'=> 0
-            ]);
-            Pasien::Create([
+            if($PasienUpdate != null){
+                Pasien::Create([
                 
-                'alat'=> $z->id,
-                'nama'=>$request->nama,
-                'ruang'=>$request->ruang,
-                'status'=>1
-            ]);
+                    'alat'=> $z->id,
+                    'nama'=>$request->nama,
+                    'ruang'=>$request->ruang,
+                    'status'=>1
+                ]);
+                $PasienUpdate->update([
+                    'status'=> 0
+                ]);
+            }
+            else{
+                Pasien::Create([
+                
+                    'alat'=> $z->id,
+                    'nama'=>$request->nama,
+                    'ruang'=>$request->ruang,
+                    'status'=>1
+                ]);
+            }
+            
+            
 
             session()->flash('message','Data alat sudah diupdate');
             return redirect()->route('index');
@@ -44,7 +57,8 @@ class UpdateController extends Controller
     }
 
     public function delete($id){
-        $sensor = sensor::find($id)->first();
+       
+        $sensor = sensor::where('id',$id)->first();
         $sensor -> delete();
         return redirect()->route('device');
 

@@ -12,6 +12,9 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" defer></script>
+	<script src="js/myJs.js" defer></script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -62,8 +65,7 @@
 								<h6>nama  : {{$data[$i]['nama']}} </h6>
 								<h6>ruang : {{$data[$i]['ruang']}} </h6>
 							</div>
-							@for($p = count($value)-1; $p>=0; $p--)
-							@if($value[$p]['idPasien'] == $data[$i]['id'])
+							
 							<div class="row mt-2">
 							
 							<!-- Earnings (Monthly) Card Example -->
@@ -72,9 +74,8 @@
 									<div class="card-body">
 										<div class="row no-gutters align-items-center">
 											<div class="col mr-2">
-												<div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-													TPM</div>
-												<div class="h5 mb-0 font-weight-bold text-gray-800">{{$value[$p]['tpm']}}</div>
+												<div class="text-xs font-weight-bold text-success text-uppercase mb-1">TPM</div>
+												<div class="h5 mb-0 font-weight-bold text-gray-800"><span class='tpm'></span></div>
 											</div>
 											<div class="col-auto">
 												<i class="fas fa-thumbtack fa-2x text-gray-300"></i>
@@ -94,7 +95,7 @@
 												</div>
 												<div class="row no-gutters align-items-center">
 													<div class="col-auto">
-														<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$value[$p]['kapasitas']}} ML</div>
+														<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><span class='kapasitas'> ML</div>
 													</div>
 													
 												</div>
@@ -115,7 +116,7 @@
 											<div class="col mr-2">
 												<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
 													Prediksi</div>
-												<div class="h5 mb-0 font-weight-bold text-gray-800">{{$value[$p]['prediksi']}} Jam</div>
+												<div class="h5 mb-0 font-weight-bold text-gray-800"><span class='prediksi'></span> Jam</div>
 											</div>
 											<div class="col-auto">
 												<i class="fas fa-clock fa-2x text-gray-300"></i>
@@ -125,11 +126,9 @@
 								</div>
 							</div>
 						</div>
-								@break
-							@endif
-							@endfor
+								
 							
-						</div>
+						
 						@else
 							
 						@endif
