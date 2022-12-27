@@ -13,7 +13,7 @@ use Response;
 class view extends Controller
 {
   
-    public function sensor($idAlat, $dropsPerMinutes ,$kapasitas){
+    public function sensor($idAlat, $dropsPerMinutes ,$kapasitas, $status){
         $pasien = Pasien::where('alat', $idAlat)->where('status','1')->first();
         $prediksi = ($kapasitas/$dropsPerMinutes)/10;
         Value::Create([
@@ -36,6 +36,7 @@ class view extends Controller
        
        $data = $Tempdata->toArray();
        $value = $Tempvalue->toArray();
+     
 
        if(count($Tempdata) == !0 ){
         return view('index',['data'=>$data]);
@@ -54,7 +55,7 @@ class view extends Controller
        
   
        if(count($Tempdata) == !0 ){
-        return Response::json(['value'=>$value, 'data'=>$data]);
+        return response()->json(['value'=>$value, 'data'=>$data], 200);
        }
        else{
         dd("dsadsa");

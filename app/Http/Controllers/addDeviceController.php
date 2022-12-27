@@ -29,7 +29,7 @@ class addDeviceController extends Controller
         else{
             $post = sensor::create([
                 'id' => $request->kode,
-                'status'=> 'tidak terpasang'
+                'status'=> 'berhasil ditambah'
             ]);
 
             session()->flash('message','alat ditambahkan');

@@ -23,6 +23,7 @@ float dropsPerMinutes;
 float dropsPerSecond;
 float kapasitas = 0;
 String idAlat = "11111111";
+String status = "";
 
 const int LOADCELL_DOUT_PIN = D6;
 const int LOADCELL_SCK_PIN = D7;
@@ -137,6 +138,12 @@ void berat(){
   if(kapasitas<2){
     kapasitas=0;
   }
+  if(kapasitas <= 100){
+    status = "LOW";
+  }
+  else{
+    status = "HIGH";
+  }
 
 }
 
@@ -151,7 +158,7 @@ void Kirim(){
         if (client.connect(host, 8080))
         {
           Serial.println("connected]");
-          String url = "/iot/public/sensor/"+idAlat+"/"+String(dropsPerMinutes)+"/"+String(kapasitas);
+          String url = "/iot/public/sensor/"+idAlat+"/"+String(dropsPerMinutes)+"/"+String(kapasitas)/status;
           Serial.println("[Sending a request]");
           client.print(String("GET ") + url + " HTTP/1.1\r\n" +
                       "Host: " + host + "\r\n" +

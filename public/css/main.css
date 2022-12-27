@@ -134,7 +134,6 @@ textarea:-ms-input-placeholder { color: #adadad;}
 .z{
   background:url('../images/bg-01.jpg')  no-repeat center center fixed ;
   -webkit-background-size: cover;
-  -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 
@@ -142,6 +141,10 @@ textarea:-ms-input-placeholder { color: #adadad;}
 }
 .mainDevice{
   color: white;
+}
+
+pre {
+  display: none;
 }
 
 button {
