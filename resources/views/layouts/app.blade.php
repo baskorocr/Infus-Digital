@@ -65,7 +65,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Alat</span>
+            <span>Setting</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -73,6 +73,7 @@
 
                 <a class="collapse-item" href="{{route('device')}}">daftar alat</a>
                 <a class="collapse-item" href="{{route('adddevice')}}">tambah alat</a>
+                <a class="collapse-item" href="{{route('regist')}}">tambah admin</a>
             </div>
         </div>
     </li>

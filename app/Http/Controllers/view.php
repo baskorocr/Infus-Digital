@@ -15,13 +15,15 @@ class view extends Controller
   
     public function sensor($idAlat, $dropsPerMinutes ,$kapasitas, $status){
         $pasien = Pasien::where('alat', $idAlat)->where('status','1')->first();
-        $prediksi = ($kapasitas/$dropsPerMinutes)/10;
+        $convert = $kapasitas *1000;
+        $prediksi = ($convert/$dropsPerMinutes)/10;
         Value::Create([
                 
             'idPasien'=> $pasien->id,
             'tpm'=> $dropsPerMinutes,
             'kapasitas'=> $kapasitas,
             'prediksi'=> $prediksi,
+            'status' => $status
             
         ]);
 

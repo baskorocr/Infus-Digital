@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFi.h>
 #include <Ticker.h>
-#include <HX711_ADC.h>
+#include "HX711.h"
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -12,6 +12,8 @@
 #define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
 #define SCREEN_ADDRESS 0x3C 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+#define DOUT  D6
+#define CLK  D7
 
 Ticker blinker;
 
@@ -25,19 +27,16 @@ float kapasitas = 0;
 String idAlat = "11111111";
 String status = "";
 
-const int LOADCELL_DOUT_PIN = D6;
-const int LOADCELL_SCK_PIN = D7;
-
-
-HX711_ADC LoadCell(LOADCELL_DOUT_PIN,LOADCELL_SCK_PIN);
+HX711 scale(DOUT, CLK);
+float calibration_factor = -237785;
 
 void ICACHE_RAM_ATTR voidCounter ();
 
 
-const char* ssid = "B45";
+const char* ssid = "Wifi Akses";
 const char* password = "Asu123ok";
 
-const char* host = "192.168.100.124";
+const char* host = "192.168.1.252";
 
 void timerIsr() {
   blinker.detach();
@@ -54,8 +53,7 @@ void timerIsr() {
 
 void voidCounter() {
   timeMillis = millis();
-  
-  
+
 }
 
 void setupProses() {
@@ -66,11 +64,13 @@ void setupProses() {
 void setup()
 {
   Serial.begin(115200);
+ 
+  scale.set_scale();
+  scale.tare(); //Reset the scale to 0
+  long zero_factor = scale.read_average();
+
   Serial.println();
-  LoadCell.begin();
   pinMode(D3, INPUT_PULLUP);
-  LoadCell.start(2000);
-  LoadCell.setCalFactor(109.33);
   Serial.printf("Connecting to %s ", ssid);
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED)
@@ -132,18 +132,17 @@ void timer() {
 }
 
 void berat(){
-  LoadCell.update();
-   kapasitas = LoadCell.getData();
-  
-  if(kapasitas<2){
-    kapasitas=0;
-  }
-  if(kapasitas <= 100){
+  scale.set_scale(calibration_factor);
+  kapasitas = scale.get_units();
+    
+  if(kapasitas <= 0.1){
     status = "LOW";
   }
   else{
     status = "HIGH";
   }
+
+  
 
 }
 
@@ -158,7 +157,7 @@ void Kirim(){
         if (client.connect(host, 8080))
         {
           Serial.println("connected]");
-          String url = "/iot/public/sensor/"+idAlat+"/"+String(dropsPerMinutes)+"/"+String(kapasitas)/status;
+          String url = "/iot/public/sensor/"+idAlat+"/"+String(dropsPerMinutes)+"/"+String(kapasitas)+"/"+status;
           Serial.println("[Sending a request]");
           client.print(String("GET ") + url + " HTTP/1.1\r\n" +
                       "Host: " + host + "\r\n" +

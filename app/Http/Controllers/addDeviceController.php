@@ -10,8 +10,8 @@ class addDeviceController extends Controller
     public function post(Request $request){
         $p = strlen($request->kode);
         if($p != 8){
-            session()->flash('message','kode alat harus 8 angka');
-            return redirect()->route('device');
+            session()->flash('error','kode alat harus 8 angka');
+            return redirect()->route('adddevice');
         }
 
         $this->validate($request, [

@@ -92,6 +92,14 @@
 						</div>
 					</div>
 
+					<div class="d-flex justify-content-center p-t-8 p-b-31 ">
+                    @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('index') }}">
+                                        batal
+                                    </a>
+                                @endif
+					</div>
+
 					
 				</form>
 			</div>
