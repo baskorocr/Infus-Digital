@@ -28,15 +28,15 @@ String idAlat = "11111111";
 String status = "";
 
 HX711 scale(DOUT, CLK);
-float calibration_factor = -237785;
+float calibration_factor = -238635;
 
 void ICACHE_RAM_ATTR voidCounter ();
 
 
-const char* ssid = "Wifi Akses";
+const char* ssid = "sync";
 const char* password = "Asu123ok";
 
-const char* host = "192.168.1.252";
+const char* host = "192.168.1.11";
 
 void timerIsr() {
   blinker.detach();
@@ -134,8 +134,12 @@ void timer() {
 void berat(){
   scale.set_scale(calibration_factor);
   kapasitas = scale.get_units();
-    
-  if(kapasitas <= 0.1){
+  kapasitas = kapasitas * 1000;  
+  
+  if(kapasitas <= 0 ){
+    kapasitas = 0;
+  }
+  if(kapasitas <= 100){
     status = "LOW";
   }
   else{
@@ -150,7 +154,7 @@ unsigned long LTimer;
 void Kirim(){
   WiFiClient client;
   unsigned long NTimer = millis();
-  if (NTimer - LTimer > 60000){
+  if (NTimer - LTimer >  60000){
     LTimer = NTimer;
     Serial.printf("\n[Connecting to %s ... ", host);
     if(dropsPerSecond > 0){

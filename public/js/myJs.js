@@ -26,7 +26,11 @@ $(document).ready(function() {
                             tpm[x].innerHTML = arrVal[p]['tpm'];
                             status[x].innerHTML = arrVal[p]['status'];
                             kapasitas[x].innerHTML = arrVal[p]['kapasitas'];
-                            prediksi[x].innerHTML = arrVal[p]['prediksi'];
+                            predict = arrVal[p]['prediksi'];
+                            if(predict < 0){
+                                predict = 0;
+                            }
+                            prediksi[x].innerHTML = predict;
                             x++;
                            if(arrVal[p]['status'] == 'LOW'){
                             audio.play();

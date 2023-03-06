@@ -14,9 +14,13 @@ class view extends Controller
 {
   
     public function sensor($idAlat, $dropsPerMinutes ,$kapasitas, $status){
+        if($kapasitas<0){
+            $kapasitas = 0;
+        }
         $pasien = Pasien::where('alat', $idAlat)->where('status','1')->first();
-        $convert = $kapasitas *1000;
-        $prediksi = ($convert/$dropsPerMinutes)/10;
+        $prediksi = ($kapasitas/$dropsPerMinutes)/4;
+        $dropsPerMinutes = $dropsPerMinutes - 1;
+
         Value::Create([
                 
             'idPasien'=> $pasien->id,
