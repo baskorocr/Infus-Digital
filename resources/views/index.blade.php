@@ -55,6 +55,10 @@
 					</div>
 					
 					<!-- Content Row -->
+					@if($data == 0)
+						data kosong
+					
+					@else
 					@for($i = 0; $i < count($data); $i++)
 						@if($data[$i]['status'] == 1)
 						<div>
@@ -139,12 +143,11 @@
 							</div>
 						</div>
 								
-							
-						
-						@else
-							
+											
 						@endif
 					@endfor
+					@endif
+					
 					
 					
 

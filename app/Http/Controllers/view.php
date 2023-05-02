@@ -48,7 +48,7 @@ class view extends Controller
         return view('index',['data'=>$data]);
        }
        else{
-       
+        return view('index',['data'=>0]);
        }
       
     }
